@@ -3,11 +3,10 @@ pipeline {
     agent any
 
     stages {
-	stage("") {
+	stage("SCA") {
 	    steps {
-		sh 'chmod +x owasp-dependency-check.sh'
-		sh 'bash owasp-dependency-check.sh'
-
+		dependencyCheck additionalArguments: '--scan="/"', odcInstallation: 'OWASP-Dependency-Check'
+        dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
 	    }
 	}
 
