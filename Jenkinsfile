@@ -5,7 +5,7 @@ pipeline {
     stages {
 	stage("SCA") {
 	    steps {
-		dependencyCheck additionalArguments: '--scan="/"', odcInstallation: 'OWASP-Dependency-Check'
+		dependencyCheck additionalArguments: '--scan="pwd()"', odcInstallation: 'OWASP-Dependency-Check'
         dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
 	    }
 	}
