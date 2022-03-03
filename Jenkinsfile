@@ -11,8 +11,8 @@ pipeline {
         // }
         stage('Scan') {
             steps {
-                withSonarQubeEnv(installationName: 'sq1') {
-                    sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+                withSonarQubeEnv(credentialsId: '6b3f37ca-db72-4c46-a9d4-b2cf3d562d31', installationName: 'sq1') {
+                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
                 }
             }
         }
