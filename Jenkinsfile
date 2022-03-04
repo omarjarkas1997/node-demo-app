@@ -12,7 +12,7 @@ pipeline {
         stage('Scan') {
             steps {
                 withSonarQubeEnv(credentialsId: '6b3f37ca-db72-4c46-a9d4-b2cf3d562d31', installationName: 'sq1') {
-                    withMaven(maven: 'Maven 3.6.3') {
+                    withMaven {
                         sh 'mvn clean package sonar:sonar'
                     }
                 }
