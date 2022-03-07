@@ -3,20 +3,21 @@ pipeline {
     agent any
 
     stages {
-        stage("SCA") {
-            steps {
-            sh('mkdir -p build/owasp')
-            dependencyCheck additionalArguments: '--project node-demo-app --scan ./ --disableYarnAudit --out build/owasp/dependency-check-report.xml --format XML', odcInstallation: 'OWASP-Dependency-Check'
-            dependencyCheckPublisher pattern: 'build/owasp/dependency-check-report.xml'
-            }
-        }
-        // stage('Scan') {
+        // stage("SCA") {
         //     steps {
-        //         withSonarQubeEnv(credentialsId: '6b3f37ca-db72-4c46-a9d4-b2cf3d562d31', installationName: 'sq1') {
-        //             sh 'mvn sonar:sonar'
-        //         }
-        //     }   
+        //     sh('mkdir -p build/owasp')
+        //     dependencyCheck additionalArguments: '--project node-demo-app --scan ./ --disableYarnAudit --out build/owasp/dependency-check-report.xml --format XML', odcInstallation: 'OWASP-Dependency-Check'
+        //     dependencyCheckPublisher pattern: 'build/owasp/dependency-check-report.xml'
+        //     }
         // }
+        stage('Scan') {
+            steps {
+                withSonarQubeEnv(credentialsId: '0686b948-3ea3-4c84-aaf6-6a207a0c682d') {
+                    sh 'mvn sonar:sonar'
+                    sh 'cat target/sonar/report-task.txt'
+                }
+            }   
+        }
         stage("build") {
             steps {
                 echo "Building the application"
