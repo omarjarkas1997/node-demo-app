@@ -5,8 +5,9 @@ pipeline {
     stages {
         stage("SCA") {
             steps {
-            dependencyCheck additionalArguments: '--scan="/" --disableYarnAudit', odcInstallation: 'OWASP-Dependency-Check'
-            dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
+            sh(`mkdir -p build/owasp`)
+            dependencyCheck additionalArguments: '--project node-demo-app --scan ./ --disableYarnAudit --out build/owasp/dependency-check-report.xml --format XML', odcInstallation: 'OWASP-Dependency-Check'
+            dependencyCheckPublisher pattern: 'build/owasp/dependency-check-report.xml'
             }
         }
         // stage('Scan') {
