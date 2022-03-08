@@ -16,6 +16,7 @@ pipeline {
         stage('Example') {
             steps {
                 sh 'mvn --version'
+                sh 'ls -l'
             }
         }
         stage('Scan') {
