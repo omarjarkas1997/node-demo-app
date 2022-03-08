@@ -18,14 +18,14 @@ pipeline {
                 sh 'mvn --version'
             }
         }
-        // stage('Scan') {
-        //     steps {
-        //         withSonarQubeEnv(credentialsId: '0686b948-3ea3-4c84-aaf6-6a207a0c682d', installationName: 'sq1') {
-        //             sh 'mvn sonar:sonar'
-        //             sh 'cat target/sonar/report-task.txt'
-        //         }
-        //     }   
-        // }
+        stage('Scan') {
+            steps {
+                withSonarQubeEnv(credentialsId: '0686b948-3ea3-4c84-aaf6-6a207a0c682d', installationName: 'sq1') {
+                    sh 'mvn sonar:sonar'
+                    sh 'cat target/sonar/report-task.txt'
+                }
+            }   
+        }
         stage("build") {
             steps {
                 echo "Building the application"
