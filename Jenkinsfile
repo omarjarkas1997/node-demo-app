@@ -6,31 +6,27 @@ pipeline {
     }
 
     stages {
-        // stage("SCA") {
-        //     steps {
-        //     sh('mkdir -p build/owasp')
-        //     dependencyCheck additionalArguments: '--project node-demo-app --scan ./ --disableYarnAudit --out build/owasp/dependency-check-report.xml --format XML', odcInstallation: 'OWASP-Dependency-Check'
-        //     dependencyCheckPublisher pattern: 'build/owasp/dependency-check-report.xml'
-        //     }
-        // }
-        stage('Example') {
+        stage("SCA") {
             steps {
-                sh 'mvn --version'
-                sh 'ls -l'
-                sh 'pwd'
+            sh('mkdir -p build/owasp')
+            dependencyCheck additionalArguments: '--project node-demo-app --scan ./ --disableYarnAudit --out build/owasp/dependency-check-report.xml --format XML', odcInstallation: 'OWASP-Dependency-Check'
+            dependencyCheckPublisher pattern: 'build/owasp/dependency-check-report.xml'
             }
         }
-        stage('Scan') {
+        stage('SAST') {
             steps {
-                withSonarQubeEnv(credentialsId: '0686b948-3ea3-4c84-aaf6-6a207a0c682d', installationName: 'sq1') {
+                withSonarQubeEnv(credentialsId: 'jenkins-sast', installationName: 'sq1') {
                     sh 'mvn sonar:sonar'
                     sh 'cat target/sonar/report-task.txt'
                 }
             }   
         }
-        stage("build") {
+        stage("DAST") {
             steps {
-                echo "Building the application"
+                "docker run --network demo-network -i owasp/zap2docker-stable"+ 
+								"zap-cli quick-scan --spider --self-contained --recursive"+
+								"--start-options '-config api.disablekey=true'"+
+								"http://10.89.114.248:3000 -l Low"
             }
         }
         stage("test") {
