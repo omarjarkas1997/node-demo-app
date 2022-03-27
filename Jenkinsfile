@@ -13,14 +13,14 @@ pipeline {
             dependencyCheckPublisher pattern: 'build/owasp/dependency-check-report.xml'
             }
         }
-        stage('SAST') {
-            steps {
-                withSonarQubeEnv(credentialsId: 'jenkins-sast', installationName: 'sq1') {
-                    sh 'mvn sonar:sonar'
-                    sh 'cat target/sonar/report-task.txt'
-                }
-            }   
-        }
+        // stage('SAST') {
+        //     steps {
+        //         withSonarQubeEnv(credentialsId: 'jenkins-sonarqube', installationName: 'sq1') {
+        //             sh 'mvn sonar:sonar'
+        //             sh 'cat target/sonar/report-task.txt'
+        //         }
+        //     }   
+        // }
         // stage("DAST") {
         //     steps {
         //         "docker run --network demo-network -i owasp/zap2docker-stable"+ 
