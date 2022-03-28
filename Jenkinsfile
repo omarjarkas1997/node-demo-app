@@ -9,18 +9,18 @@ pipeline {
         stage("SCA") {
             steps {
             sh('mkdir -p build/owasp')
-            dependencyCheck additionalArguments: '--project node-demo-app --scan ./ --disableYarnAudit --out build/owasp/dependency-check-report.html --format HTML', odcInstallation: 'OWASP-Dependency-Check'
-            dependencyCheckPublisher pattern: 'build/owasp/dependency-check-report.html'
+            dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --format HTML', odcInstallation: 'OWASP-Dependency-Check'
+            // dependencyCheckPublisher pattern: 'build/owasp/dependency-check-report.html'
             }
         }
-        stage('SAST') {
-            steps {
-                withSonarQubeEnv(credentialsId: 'jenkins-sonarqube', installationName: 'sq1') {
-                    sh 'mvn sonar:sonar'
-                    sh 'cat target/sonar/report-task.txt'
-                }
-            }   
-        }
+        // stage('SAST') {
+        //     steps {
+        //         withSonarQubeEnv(credentialsId: 'jenkins-sonarqube', installationName: 'sq1') {
+        //             sh 'mvn sonar:sonar'
+        //             sh 'cat target/sonar/report-task.txt'
+        //         }
+        //     }   
+        // }
         // stage("DAST") {
         //     steps {
         //         "docker run --network demo-network -i owasp/zap2docker-stable"+ 
