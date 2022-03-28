@@ -23,14 +23,14 @@ pipeline {
                 }
             }   
         }
-        // stage("DAST") {
-        //     steps {
-        //         "docker run --network demo-network -i owasp/zap2docker-stable"+ 
-		// 						"zap-cli quick-scan --spider --self-contained --recursive"+
-		// 						"--start-options '-config api.disablekey=true'"+
-		// 						"http://10.89.114.248:3000 -l Low"
-        //     }
-        // }
+        stage("DAST") {
+            steps {
+                "docker run --network demo-network -i owasp/zap2docker-stable"+ 
+								"zap-cli quick-scan --spider --self-contained --recursive"+
+								"--start-options '-config api.disablekey=true'"+
+								"http://172.16.11.110:3000 -l Low"
+            }
+        }
         stage("test") {
             steps {
                 echo "Testing the application"
