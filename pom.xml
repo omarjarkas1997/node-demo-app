@@ -15,11 +15,6 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
-		<dependency-check-maven.version>6.1.1</dependency-check-maven.version>
-		<sonar.dependencyCheck.htmlReportPath>./target/dependency-check-report.html</sonar.dependencyCheck.htmlReportPath>
-		<sonar.dependencyCheck.jsonReportPath>./target/dependency-check-report.json</sonar.dependencyCheck.jsonReportPath>
-		<sonar.dependencyCheck.summarize>true</sonar.dependencyCheck.summarize>
-		<sonar.host.url>https://5b73-130-102-13-152.ngrok.io:9000/</sonar.host.url>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -39,24 +34,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<!-- OWASP dependency Check plugin -->
-			<plugin>
-				<groupId>org.owasp</groupId>
-				<artifactId>dependency-check-maven</artifactId>
-				<version>${dependency-check-maven.version}</version>
-				<configuration>
-					<formats>
-						<format>html</format>
-						<format>json</format>
-					</formats>
-				</configuration>
-				</plugin>
-			<!-- Sonar Qube installation -->
-			<plugin>
-				<groupId>org.sonarsource.scanner.maven</groupId>
-				<artifactId>sonar-maven-plugin</artifactId>
-				<version>3.8.0.2131</version>
 			</plugin>
 		</plugins>
 	</build>
