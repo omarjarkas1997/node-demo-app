@@ -33,11 +33,11 @@
 				</configuration>
 			</plugin>
 			<!-- Configure the sonar-maven-plugin -->
-			<!-- <plugin>
+			<plugin>
 				<groupId>org.sonarsource.scanner.maven</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
 				<version>3.8.0.2131</version>
-			</plugin> -->
+			</plugin>
 		</plugins>
 	</build>
 
