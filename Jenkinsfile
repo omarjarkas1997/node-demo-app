@@ -8,9 +8,10 @@ pipeline {
     stages {
         stage("SCA") {
             steps {
-            sh('mkdir -p build/owasp')
-            dependencyCheck additionalArguments: '--scan . --disableYarnAudit --format HTML', odcInstallation: 'OWASP-Dependency-Check'
-            // dependencyCheckPublisher pattern: 'build/owasp/dependency-check-report.html'
+            // sh('mkdir -p build/owasp')
+            // dependencyCheck additionalArguments: '--scan . --disableYarnAudit --format HTML', odcInstallation: 'OWASP-Dependency-Check'
+            // // dependencyCheckPublisher pattern: 'build/owasp/dependency-check-report.html'
+            sh 'mvn dependency-check:check' 
             }
         }
         // stage('SAST') {

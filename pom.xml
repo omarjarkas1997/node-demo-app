@@ -2,24 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.5</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.example</groupId>
+	<groupId>com.elixar</groupId>
 	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<description>DevSecOps Pipeline</description>
 	<properties>
 		<java.version>11</java.version>
-		<!-- <dependency-check-maven.version>6.1.1</dependency-check-maven.version>
+		<dependency-check-maven.version>6.1.1</dependency-check-maven.version>
 		<sonar.dependencyCheck.htmlReportPath>./target/dependency-check-report.html</sonar.dependencyCheck.htmlReportPath>
 		<sonar.dependencyCheck.jsonReportPath>./target/dependency-check-report.json</sonar.dependencyCheck.jsonReportPath>
 		<sonar.dependencyCheck.summarize>true</sonar.dependencyCheck.summarize>
-		<sonar.host.url>http://localhost:9000/</sonar.host.url> -->
+		<sonar.host.url>https://b4a7-103-100-225-177.ngrok.io</sonar.host.url>
 	</properties>
 	<dependencies>
 	</dependencies>
@@ -27,7 +21,7 @@
 	<build>
 		<plugins>
 			<!-- dependency-check-maven -->
-			<!-- <plugin>
+			<plugin>
 				<groupId>org.owasp</groupId>
 				<artifactId>dependency-check-maven</artifactId>
 				<version>${dependency-check-maven.version}</version>
@@ -37,7 +31,7 @@
 						<format>json</format>
 					</formats>
 				</configuration>
-			</plugin> -->
+			</plugin>
 			<!-- Configure the sonar-maven-plugin -->
 			<!-- <plugin>
 				<groupId>org.sonarsource.scanner.maven</groupId>
