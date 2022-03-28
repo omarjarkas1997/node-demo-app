@@ -11,7 +11,8 @@ pipeline {
             // sh('mkdir -p build/owasp')
             // dependencyCheck additionalArguments: '--scan . --disableYarnAudit --format HTML', odcInstallation: 'OWASP-Dependency-Check'
             // // dependencyCheckPublisher pattern: 'build/owasp/dependency-check-report.html'
-            sh 'mvn dependency-check:check' 
+            sh 'mvn dependency-check:check'
+            dependencyCheckPublisher pattern: 'target/dependency-check-report.xml' 
             }
         }
         // stage('SAST') {
