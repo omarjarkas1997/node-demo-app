@@ -10,7 +10,7 @@ pipeline {
             steps {
             sh('mkdir -p build/owasp')
             dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --format HTML', odcInstallation: 'OWASP-Dependency-Check'
-            // dependencyCheckPublisher pattern: 'build/owasp/dependency-check-report.html'
+            dependencyCheckPublisher pattern: 'build/owasp/dependency-check-report.html'
             }
         }
         // stage('SAST') {
